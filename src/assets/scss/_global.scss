@@ -1,0 +1,24 @@
+.g-container{
+  max-width: 1552px;
+  width: 100%;
+  min-width: 280px;
+  margin: 0 auto;
+  padding: 16px 88px;
+
+  @media (width <= 992px) {
+    & {
+      padding: 16px 32px;
+    }
+  }
+  @media (width <= 568px) {
+    & {
+      padding: 16px;
+    }
+  }
+  
+  @media (width <= 376px) {
+      & {
+      padding: 16px 8px;
+     }
+  }
+}

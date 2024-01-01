@@ -1,0 +1,21 @@
+@mixin link($color){
+  position: relative;
+
+  &::before{
+    content: '';
+
+    width: 0;
+    height: 2px;
+    display: block;
+    background-color: $color;
+
+    position: absolute;
+    bottom: -2px;
+    transition: all 1s ease-in-out;
+    z-index: 1;
+  }
+
+  &:hover::before{
+    width: 100%;
+  }
+}

@@ -1,0 +1,32 @@
+$dark: rgb(18, 18, 18);
+$dark-gray: rgba(36, 36, 36, 0.95);
+$gray: rgba(35, 39, 42, 1);
+$light-gray: rgba(128, 128, 128, 1);
+$gamelist-fill: rgba(50, 50, 50, 1);
+$primary: rgba(255, 31, 68, 1);
+$blue: rgba(54, 68, 103, 1);
+$light-blue: rgba(69, 95, 114, 1);
+
+%text-60{
+  font-size: 60px;
+  line-height: 72px;
+  font-weight: 500;
+}
+
+%text-32 {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 500;
+}
+
+%text-20 {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+}
+
+%text-16 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
