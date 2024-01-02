@@ -100,4 +100,10 @@ const allAmount = ref(3);
     height: 230px;
   }
 }
+
+@media (height <= 374px) {
+  .loading-page__img {
+    height: 190px;
+  }
+}
 </style>
