@@ -43,3 +43,69 @@
     box-shadow: inset 0 0 0 $gamelist-fill, inset 0 0 0 $gamelist-fill;
   }
 }
+
+/* loading */
+
+
+@keyframes show-dot-1 {
+  0% {
+    translate: 50px 0;
+    opacity: 0;
+  }
+  25% {
+    translate: 0 0;
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes show-dot-2 {
+  0% {
+    translate: 50px;
+    opacity: 0;
+  }
+  25% {
+    translate: 50px;
+    opacity: 0;
+  }
+  50% {
+    translate: 0 0;
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes show-dot-3 {
+  0% {
+    translate: 50px;
+    opacity: 0;
+  }
+  25% {
+    translate: 50px;
+    opacity: 0;
+  }
+  50% {
+    translate: 50px;
+    opacity: 0;
+  }
+  75% {
+    translate: 0;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

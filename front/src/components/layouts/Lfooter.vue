@@ -335,5 +335,8 @@
       }
     }
   }
+  address {
+    letter-spacing: -1px;
+  }
 }
 </style>
