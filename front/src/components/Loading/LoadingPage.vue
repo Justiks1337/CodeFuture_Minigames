@@ -60,6 +60,10 @@ const allAmount = ref(3);
 }
 
 @media (width <= 992px) {
+  .loading-page__img {
+    max-width: 300px;
+    height: 330px;
+  }
   .loading-page__title {
     font-size: 20px;
     line-height: 30px;
@@ -78,6 +82,22 @@ const allAmount = ref(3);
     font-size: 16px;
     line-height: 24px;
     font-weight: 500;
+  }
+}
+
+@media (height <= 720px) {
+  .loading-page__img {
+    max-width: 300px;
+    height: 330px;
+  }
+}
+
+@media (height <= 488px) {
+  .loading-page__img {
+    max-width: 200px;
+    min-width: 200px;
+    width: 200px;
+    height: 230px;
   }
 }
 </style>

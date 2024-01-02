@@ -8,8 +8,8 @@ import LoadingPage from "@/components/Loading/LoadingPage.vue";
 
 <template>
   <Lheader />
-  <!-- <GameList />
-  <ErrorPage /> -->
+  <GameList />
+  <ErrorPage />
   <LoadingPage />
   <Lfooter />
 </template>
