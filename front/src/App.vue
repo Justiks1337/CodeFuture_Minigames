@@ -8,14 +8,10 @@ import LoadingPage from "@/components/Loading/LoadingPage.vue";
 
 <template>
   <Lheader />
-  <!-- <GameList />
-  <ErrorPage /> -->
+  <GameList />
+  <ErrorPage />
   <LoadingPage />
   <Lfooter />
 </template>
 
-<style lang="scss">
-// * {
-//   outline: 3px solid red !important;
-// }
-</style>
+<style lang="scss"></style>

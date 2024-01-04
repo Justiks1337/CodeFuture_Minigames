@@ -5,15 +5,15 @@ import Ubutton from "@/components/ui/Ubutton.vue";
 <template>
   <section class="error-page">
     <div class="error-page__container g-container">
-      <h2 class="error-page__title">404 error</h2>
+      <h2 class="error-page__title">Ошибка 404</h2>
       <h3 class="error-page__subtitle">
-        Whoops!<br />
-        Something<br />
-        went wrong
+        Ууупс!<br />
+        Что-то<br />
+        пошло не так
       </h3>
       <p class="error-page__reason">
-        Sorry, the page are looking for doesn’t exist or has been removed. Try
-        searching our site.
+        Извините, страничка не найдена или уже удалена. Попробуйте поискать на
+        нашем сайте.
       </p>
       <div class="error-page__buttons">
         <Ubutton href="#" buttonType="first" class="error-page__button">
@@ -31,11 +31,11 @@ import Ubutton from "@/components/ui/Ubutton.vue";
               fill-rule="nonzero"
               fill="#FF1F44" />
           </svg>
-          go back
+          Назад
         </Ubutton>
 
         <Ubutton href="#" buttonType="second" class="error-page__button">
-          go to the main page
+          На главную
         </Ubutton>
       </div>
     </div>
@@ -103,6 +103,7 @@ import Ubutton from "@/components/ui/Ubutton.vue";
   }
   .error-page__button {
     display: block;
+    width: max-content;
     &:not(:first-child) {
       margin-left: 0;
       margin-top: 15px;

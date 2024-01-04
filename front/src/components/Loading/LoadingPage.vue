@@ -7,9 +7,9 @@ const allAmount = ref(3);
 <template>
   <section class="loading-page">
     <div class="loading-page__container g-container">
-      <img src="@/assets/svg/walking-man.svg" class="loading-page__img" />
+      <img src="@/assets/svg/walking-man-icon.svg" />
       <h2 class="loading-page__title">
-        Looking for your contenders <span>.</span> <span>.</span> <span>.</span>
+        Ищем ваших соперников <span>.</span> <span>.</span> <span>.</span>
       </h2>
       <p class="loading-page__amount">{{ amount }}/{{ allAmount }}</p>
     </div>
@@ -22,7 +22,7 @@ const allAmount = ref(3);
 .loading-page {
   background-color: $dark;
   overflow-x: hidden;
-  &__img {
+  img {
     display: block;
     margin: 0 auto;
     max-width: 400px;
@@ -60,7 +60,7 @@ const allAmount = ref(3);
 }
 
 @media (width <= 992px) {
-  .loading-page__img {
+  img {
     max-width: 300px;
     height: 330px;
   }
@@ -86,14 +86,14 @@ const allAmount = ref(3);
 }
 
 @media (height <= 720px) {
-  .loading-page__img {
+  img {
     max-width: 300px;
     height: 330px;
   }
 }
 
 @media (height <= 488px) {
-  .loading-page__img {
+  img {
     max-width: 200px;
     min-width: 200px;
     width: 200px;
@@ -102,7 +102,7 @@ const allAmount = ref(3);
 }
 
 @media (height <= 374px) {
-  .loading-page__img {
+  img {
     height: 190px;
   }
 }

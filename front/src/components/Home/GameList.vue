@@ -44,11 +44,7 @@ function changeGame(id) {
         :class="{
           'gamelist__game_selected': selectedGame === game.title,
           'gamelist__game_active': activeGame === game.title,
-        }">
-        <h2 class="gamelist__game-title">
-          {{ game.title }}
-        </h2>
-      </button>
+        }" />
     </div>
   </section>
 </template>
@@ -72,8 +68,8 @@ function changeGame(id) {
     max-width: 400px;
     width: 100%;
     min-width: 200px;
+    height: 50px;
     border-radius: 10px;
-    padding: 10px;
     box-shadow: none;
     color: $blue;
     transform: scale(1);
@@ -90,10 +86,6 @@ function changeGame(id) {
     &_active {
       animation: button-active 1s linear;
       outline: none !important;
-    }
-
-    &-title {
-      @extend %text-20;
     }
   }
 

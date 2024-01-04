@@ -4,11 +4,11 @@
   <footer class="footer">
     <div class="footer__container g-container">
       <article class="footer__social">
-        <img src="/src/assets/svg/1c-logo.svg" alt="1С УЧЕБНЫЙ ЦЕНТР" />
+        <img src="@/assets/svg/1c-logo.svg" />
         <ul class="socials">
           <li>
             <a href="#">
-              <img src="/src/assets/svg/facebook-icon.svg" />
+              <img src="@/assets/svg/facebook-icon.svg" />
             </a>
           </li>
           <li>
@@ -37,65 +37,47 @@
             </a>
           </li>
         </ul>
-        <div class="footer__social-buttons">
-          <a href="#" class="footer__social-store footer__social-store_google">
-            <img
-              src="@/assets/svg/google-store.svg"
-              alt="Download in google store" />
-          </a>
-          <a href="#" class="footer__social-store footer__social-store_app">
-            <img src="@/assets/svg/app-store.svg" alt="Download in app store" />
-          </a>
-        </div>
       </article>
-      <article class="footer__get-help">
-        <h3 class="ul-title">Get help</h3>
+      <article id="help" class="footer__get-help">
+        <h3 class="ul-title">Помощь</h3>
         <ul>
           <li>
-            <a href="#">Order Status</a>
+            <a href="https://t.me/Elvira1C">Elvira1C</a>
           </li>
           <li>
-            <a href="#">Shipping and Delivery</a>
+            <a href="https://t.me/Justiks1337">Justiks</a>
           </li>
           <li>
-            <a href="#">Returns</a>
+            <a href="https://psy-sovet.ru/">Помощь</a>
           </li>
           <li>
-            <a href="#">Payment Options</a>
-          </li>
-          <li>
-            <a href="#">Contact Us</a>
+            <a href="https://t.me/kult_sviney">Группа</a>
           </li>
         </ul>
       </article>
-      <article class="footer__about">
-        <h3 class="ul-title">About</h3>
-        <ul>
-          <li><a href="#">News</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Investors</a></li>
-          <li><a href="#">Sustainability</a></li>
-        </ul>
-      </article>
-      <article class="footer__contacts">
-        <h3 class="ul-title">Contacts</h3>
+      <article id="contacts" class="footer__contacts">
+        <h3 class="ul-title">Контакты разработчиков</h3>
         <ul>
           <li>
-            <a href="mailto:sasaprigoda6@gmail.com">sasaprigoda6@gmail.com</a>
+            <a href="https://t.me/Justiks1337"> Дубков Максим</a>
           </li>
-          <li><address href="#">Gadyach city, Hetmanska street 58</address></li>
-          <li><a href="tel:+380663880963">+380663880963</a></li>
+          <li>
+            <a href="mailto:sasaprigoda6@gmail.com"> sasaprigoda6@gmail.com</a>
+          </li>
+          <li>
+            <a href="https://kazoe.ru/contacts"> sodiel</a>
+          </li>
         </ul>
       </article>
-      <article class="footer__info">
+      <article id="project_resources" class="footer__info">
         <p class="footer__info-copyright">
-          © 2023 1с учебный центр, All Rights Reserved
+          © 2023 1с учебный центр, Все Права Защищены
         </p>
         <ul>
-          <li><a href="#">Terms of Use</a></li>
-          <li><a href="#">Terms of Sale</a></li>
-          <li><a href="#">Privacy & Cookie Policy</a></li>
-          <li><a href="#">Cookie Settings</a></li>
+          <li><a href="https://t.me/OneC_chess_bot">Бот</a></li>
+          <li>
+            <a href="https://github.com/Justiks228/ChessBot">Код проекта</a>
+          </li>
         </ul>
       </article>
     </div>
@@ -142,15 +124,6 @@
         }
       }
     }
-
-    &-buttons {
-      & > a {
-        display: block;
-      }
-      & > a:not(:first-child) {
-        margin-top: 24px;
-      }
-    }
   }
 
   .ul-title {
@@ -158,12 +131,6 @@
     font-family: "Poppins", sans-serif;
     @extend %text-20;
     text-transform: uppercase;
-  }
-
-  address {
-    color: $light-gray;
-    @extend %text-16;
-    font-style: normal;
   }
 
   ul > li {
@@ -206,16 +173,6 @@
   }
 
   .footer__social {
-    &-store {
-      & > img {
-        transform: scale(1);
-        transition: all 0.5s ease-in-out;
-      }
-      &:hover > img {
-        transform: scale(1.1);
-      }
-    }
-
     .socials img {
       vertical-align: middle;
       transform: scale(1);
@@ -235,24 +192,8 @@
     }
 
     &__social {
-      display: grid;
       width: 100%;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      justify-content: space-between;
-      &-buttons {
-        grid-column: 2/2;
-        grid-row: 1/3;
-        align-self: center;
-        justify-self: end;
-        & > a {
-          display: inline-block;
-          &:not(:first-child) {
-            margin-top: 0;
-            margin-left: 24px;
-          }
-        }
-      }
+      align-items: start;
     }
 
     &__info {
@@ -290,23 +231,13 @@
       & > *:not(:first-child) {
         margin-top: 24px;
       }
-
-      &-buttons {
-        & > a {
-          display: inline-block;
-          &:not(:first-child) {
-            margin-top: 0;
-            margin-left: 24px;
-          }
-        }
-      }
     }
 
     &__info {
       padding: 16px 0;
 
       &-copyright {
-        width: 190px;
+        width: 210px;
       }
 
       & > ul > li {
@@ -321,22 +252,15 @@
 }
 
 @media (width <= 410px) {
-  .footer__info-copyright {
-    width: 210px;
+  .footer .ul-title {
+    font-size: 18px;
+    line-height: 26px;
   }
-  .footer__social-buttons {
-    & > a {
-      display: block;
-      text-align: start;
-
-      &:not(:first-child) {
-        margin-top: 12px;
-        margin-left: 0;
-      }
+  .footer__info ul > li {
+    margin-top: 12px;
+    &:first-child {
+      margin-top: 20px;
     }
-  }
-  address {
-    letter-spacing: -1px;
   }
 }
 </style>

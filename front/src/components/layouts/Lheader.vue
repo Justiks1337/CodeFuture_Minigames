@@ -10,10 +10,7 @@ const isLogin = ref(false);
 <template>
   <header class="header">
     <div class="header__container g-container">
-      <img
-        src="@/assets/svg/1c-logo.svg"
-        alt="1С УЧЕБНЫЙ ЦЕНТР"
-        class="header__logo" />
+      <img src="@/assets/svg/1c-logo.svg" class="header__logo" />
       <nav class="header__nav">
         <ul>
           <li class="header__nav-item">
@@ -63,7 +60,7 @@ const isLogin = ref(false);
 @import "@/assets/scss/_mixins.scss";
 
 .header {
-  position: relative;
+  position: static;
   background-color: $dark-gray;
 
   &__container {
@@ -79,7 +76,7 @@ const isLogin = ref(false);
   }
 
   &__nav {
-    display: none;
+    display: block;
     &-item {
       display: inline-block;
 
@@ -96,7 +93,7 @@ const isLogin = ref(false);
   }
 
   &__button {
-    display: none;
+    display: block;
     margin-left: 1px; //container gap 15px
 
     text-transform: uppercase;
@@ -108,11 +105,11 @@ const isLogin = ref(false);
 }
 
 .nav-mobile {
-  display: block;
+  display: none;
 
   position: absolute;
   z-index: 2;
-  top: 40px + 32px; // nav-button height + padding-top + padding-bottom header
+  top: 100%;
   left: 0;
 }
 
@@ -120,7 +117,7 @@ const isLogin = ref(false);
   width: 40px;
   height: 40px;
 
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 
@@ -128,28 +125,22 @@ const isLogin = ref(false);
   margin-left: auto;
 }
 
-@media (hover: hover) {
+@media (width <= 992px) {
   .header {
-    position: static;
+    position: relative;
     &__button {
-      display: block;
+      display: none;
     }
     &__nav {
-      display: block;
+      display: none;
     }
   }
-  .nav-mobile {
-    display: none;
-  }
   .nav-button {
-    display: none;
+    display: flex;
   }
-}
-
-@media (width <= 992px) {
-}
-
-@media (width <= 568px) {
+  .nav-mobile {
+    display: block;
+  }
 }
 
 @media (width <= 376px) {

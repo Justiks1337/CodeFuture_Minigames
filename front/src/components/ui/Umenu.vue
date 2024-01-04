@@ -76,7 +76,4 @@ const props = defineProps({
     padding-top: 24px;
   }
 }
-
-@media (width <= 568px) {
-}
 </style>
