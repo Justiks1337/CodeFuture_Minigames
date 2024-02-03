@@ -1,50 +1,47 @@
-<script setup>
+<script>
 import { ref } from "vue";
+import axios from 'axios';
 
-const gameList = ref([
-  {
-    title: "Игра 1",
+
+export default {
+  data() {
+    return {
+      response: [],
+      selectedGame: ref(null),
+      activeGame: ref(null),
+    }
   },
-  {
-    title: "Игра 2",
+  mounted() {
+    axios.get('http://127.0.0.1:8080/api/v1/gameslist/')
+        .then(response => {this.response = response.data})
   },
-  {
-    title: "Игра 3",
-  },
-  {
-    title: "Игра 4",
-  },
-]);
-
-const selectedGame = ref(null);
-const activeGame = ref(null);
-
-function changeGame(id) {
-  console.log(`You picked game with ${id} id`);
-
-  selectedGame.value = id;
-  activeGame.value = id;
-
-  const timeout = setTimeout(() => {
-    activeGame.value = null;
-    clearTimeout(timeout);
-  }, 1000);
-  //fetch
+  methods: {
+   onClick(url){
+     console.log(url);
+     window.location.href = url;
+   }
+  }
 }
+
 </script>
 
 <template>
   <section class="gamelist">
     <div class="gamelist__container g-container">
       <button
-        @click="changeGame(game.title)"
-        v-for="game in gameList"
+        v-for="game in response"
+        @click="onClick(game.url)"
         class="gamelist__game"
-        :disabled="activeGame === game.title"
+        :id="`${game.alias}`"
         :class="{
-          'gamelist__game_selected': selectedGame === game.title,
-          'gamelist__game_active': activeGame === game.title,
-        }" />
+          'gamelist__game_selected': selectedGame === game.name,
+          'gamelist__game_active': activeGame === game.name,
+        }"
+        :style="{'background-image': 'url(http://127.0.0.1:8080/static/game_icons/' + game.icon}">
+        <div style="background: white; opacity: 0.7; position: relative; left: 30%; width: 40%; border-radius: 5px">
+          <span style="color: black; font-size: 3vh">{{game.name}}</span>
+        </div>
+      </button>
     </div>
   </section>
 </template>
@@ -67,14 +64,13 @@ function changeGame(id) {
     display: block;
     max-width: 400px;
     width: 100%;
-    min-width: 200px;
-    height: 50px;
+   /* min-width: 200px; */
+    height: 100px;
     border-radius: 10px;
     box-shadow: none;
     color: $blue;
     transform: scale(1);
     transition: transform 0.3s linear;
-    background-image: url("@/assets/img/test-avatar.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     background-color: $gray;
