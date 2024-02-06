@@ -68,7 +68,9 @@ CHANNEL_LAYERS = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['minigames/templates',
+                 'minigames/games_queue/templates',
+                 'minigames/gameslist/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

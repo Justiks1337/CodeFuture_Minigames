@@ -6,6 +6,7 @@ from asgiref.sync import sync_to_async
 
 from minigames.gameslist.models import GamesList
 from minigames.games_queue.models import Users
+from config.Config import Config
 
 
 class PlayerWebsocket(AsyncJsonWebsocketConsumer):
@@ -66,10 +67,13 @@ class PlayerWebsocket(AsyncJsonWebsocketConsumer):
 
         if await self.accept():
             if await self.get_player_count() == await self.get_maximum_player():
-                pass
+                await self.start_game_send(await self.start_game())
+
+        await self.new_user_count()
 
     async def disconnect(self, code):
         await self.close(code=code)
+        await self.new_user_count()
 
     async def start_game(self):
 
@@ -78,8 +82,27 @@ class PlayerWebsocket(AsyncJsonWebsocketConsumer):
         async with aiohttp.ClientSession() as session:
             async with session.get(
                     f'https://{game._domain}/api/v1/start_game',
-                    headers={'players': [i.user_id for i in PlayerWebsocket.consumers[self.group]]}) as response:
+                    headers={
+                        'players': [i.user_id for i in PlayerWebsocket.consumers[self.group]],
+                        'Authorization': Config.server_authkey}) as response:
+                print((await response.json())['url'])
                 return (await response.json())['url']
+
+    async def new_user_count(self):
+        await self.channel_layer.group_send(
+            self.group,
+            {
+                'type': 'user.count',
+                'count': await self.get_player_count(),
+                'max_size': await self.get_maximum_player()
+             })
+
+    async def user_count(self, event):
+        await self.send_json({
+            'type': 'user_count',
+            'count': event["count"],
+            'max_size': event["max_size"]
+        })
 
     async def start_game_send(self, url):
         await self.channel_layer.group_send(

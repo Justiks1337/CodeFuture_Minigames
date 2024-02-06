@@ -19,5 +19,6 @@ class Config:
     http = __config_file.get("Server", "http")
     ws = __config_file.get("Server", "ws")
     host_name = __config_file.get("Server", "host_name")
+    server_authkey = __config_file.get("Server", "server_authkey")
 
     avatars = __config_file.get("Paths", "avatars")
