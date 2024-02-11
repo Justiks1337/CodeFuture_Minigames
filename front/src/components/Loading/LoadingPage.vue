@@ -1,7 +1,50 @@
 <script setup>
-import { ref } from "vue";
-const amount = ref(1);
-const allAmount = ref(3);
+import { reactive } from "vue";
+
+import { router } from "@/router/index";
+
+import useSelectedGame from "@/use/useSelectedGame";
+const { selectedGame, setSelectedGame } = useSelectedGame();
+
+const gameState = reactive({
+  connected: 0,
+  all: 0,
+});
+
+function startGame(url) {
+  if (url) window.location = url;
+
+  gameState.connected = gameState.all;
+  socket.close();
+}
+
+// generate userID
+const userId = Date.now() + Math.ceil(Math.random() * 10000);
+// generate websocket url
+const url = `wss://127.0.0.1:8080/websockets/queue/${selectedGame.value}/?user_id=${userId}`;
+
+const socket = new WebSocket(url);
+
+socket.onopen = (event) => {
+  socket.send(userId);
+};
+
+socket.onmessage = (event) => {
+  const msg = JSON.parse(event.data);
+  switch (msg.type) {
+    case "user.count":
+      gameState.connected = msg.count;
+      gameState.all = msg["max_size"];
+      break;
+    case "start_game_event":
+      startGame(msg["url"]);
+      break;
+  }
+};
+
+socket.onerror = (event) => {
+  if (event.code === 404) router.push({ name: "error-page" });
+};
 </script>
 
 <template>
@@ -11,7 +54,9 @@ const allAmount = ref(3);
       <h2 class="loading-page__title">
         Ищем ваших соперников <span>.</span> <span>.</span> <span>.</span>
       </h2>
-      <p class="loading-page__amount">{{ amount }}/{{ allAmount }}</p>
+      <p class="loading-page__amount">
+        {{ gameState.connected }}/{{ gameState.all }}
+      </p>
     </div>
   </section>
 </template>
