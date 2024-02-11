@@ -29,7 +29,7 @@ const routerUrl = computed(() => {
 
 const isRouterPath = computed(() => {
   const path = props.url.split("/");
-  const cond = routerUrls[path.at(-1)];
+  const cond = path.at(-1) in routerUrls;
   return cond;
 });
 
