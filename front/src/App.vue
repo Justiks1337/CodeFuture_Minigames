@@ -1,6 +1,20 @@
 <script setup>
 import Lheader from "@/components/layouts/Lheader.vue";
 import Lfooter from "@/components/layouts/Lfooter.vue";
+
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+import { getRouterUrls } from "./use/useGamesNames";
+const routerUrls = getRouterUrls();
+
+for (const el in routerUrls) {
+  router.addRoute({
+    path: `/queue/${el}`,
+    name: `loading-${el}`,
+    component: () => import("@/components/Loading/LoadingPage.vue"),
+  });
+}
 </script>
 
 <template>

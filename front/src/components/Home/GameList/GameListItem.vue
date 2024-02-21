@@ -1,13 +1,14 @@
 <script setup>
 import { computed } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 import useSelectedGame from "@/use/useSelectedGame";
-
 const { setSelectedGame } = useSelectedGame();
 
-const routerUrls = {
-  chess: "chess",
-};
+import { getRouterUrls } from "@/use/useGamesNames";
+
+const routerUrls = getRouterUrls();
 
 const props = defineProps({
   title: String,
@@ -21,12 +22,6 @@ const gameStyle = computed(
     `background-image: url(http://127.0.0.1:8080/static/game_icons/${props.imgName}`
 );
 
-const routerUrl = computed(() => {
-  const link = props.url;
-  const to = new URL(link);
-  return to.pathname;
-});
-
 const isRouterPath = computed(() => {
   const path = props.url.split("/");
   const cond = path.at(-1) in routerUrls;
@@ -35,19 +30,19 @@ const isRouterPath = computed(() => {
 
 function onClick(name) {
   setSelectedGame(name);
+  router.push({ path: `/queue/${name}` });
 }
 </script>
 
 <template>
-  <RouterLink
+  <button
     v-if="isRouterPath"
     @click="onClick(props.alias)"
     class="game"
-    :to="routerUrl"
     :id="props.alias"
     :style="gameStyle">
     <span>{{ props.title }}</span>
-  </RouterLink>
+  </button>
 
   <a v-else class="game" :id="props.alias" :href="props.url" :style="gameStyle">
     <span>{{ props.title }}</span>

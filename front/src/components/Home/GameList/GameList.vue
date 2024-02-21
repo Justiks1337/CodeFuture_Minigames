@@ -1,23 +1,16 @@
 <script setup>
-import { ref } from "vue";
-import GameListItem from "./GameListItem.vue";
+import GameListItem from "@/components/Home/GameList/GameListItem.vue";
 
-const gamelist = ref([
-  // {
-  //   name: "Майнкрафт",
-  //   alias: "chess",
-  //   url: "http://localhost:5173/queue/chess",
-  //   icon: "minecraft.jpg",
-  // },
-]);
+import { ref } from "vue";
+
+const gamelist = ref([]);
 
 async function getGameList() {
-  const response = await fetch(`http${import.meta.env.VITE_SSL}://${import.meta.env.VITE_HOSTNAME}/api/v1/gameslist/`, {
-    method: "GET",
+  const response = await fetch("http://127.0.0.1:8080/api/v1/gameslist/", {
     headers: {
-      "content-type": "application/json",
+      "Content-type": "applicarion/json",
     },
-    mode: "no-cors",
+    method: "GET",
   });
 
   gamelist.value = await response.json();

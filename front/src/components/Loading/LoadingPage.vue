@@ -4,7 +4,7 @@ import { reactive } from "vue";
 import { router } from "@/router/index";
 
 import useSelectedGame from "@/use/useSelectedGame";
-import {resolveConfig} from "vite";
+
 const { selectedGame, setSelectedGame } = useSelectedGame();
 
 const gameState = reactive({
@@ -22,7 +22,9 @@ function startGame(url) {
 // generate userID
 const userId = Date.now() + Math.ceil(Math.random() * 10000);
 // generate websocket url
-const url = `ws${import.meta.env.VITE_SSL}://${import.meta.env.VITE_HOSTNAME}/websockets/queue/${selectedGame.value}/?user_id=${userId}`;
+const url = `ws${import.meta.env.VITE_SSL}://${
+  import.meta.env.VITE_HOSTNAME
+}/websockets/queue/${selectedGame.value}/?user_id=${userId}`;
 
 const socket = new WebSocket(url);
 

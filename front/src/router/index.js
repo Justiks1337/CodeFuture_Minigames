@@ -9,15 +9,10 @@ export const router = createRouter({
       name: 'home',
       component: GameList,
     },
-    {
-      path: '/queue/:game',
-      name: 'loading',
-      component: () => import('@/components/Loading/LoadingPage.vue')
-    },
     { 
       path: '/:pathMatch(.*)',
       name: 'error-page',
-      component: () => import('@/components/ErrorPage/ErrorPage.vue')
+      component: () => import('@/components/ErrorPage/ErrorPage.vue') 
     },
   ],
 })
