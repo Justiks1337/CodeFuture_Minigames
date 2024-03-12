@@ -5,6 +5,11 @@ import Lfooter from "@/components/layouts/Lfooter.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
+import { useToken } from "./use/useToken";
+const { getToken, setToken } = useToken();
+const urlParams = new URL(window.location);
+setToken(urlParams.search.slice(1));
+
 import { getRouterUrls } from "./use/useGamesNames";
 const routerUrls = getRouterUrls();
 

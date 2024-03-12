@@ -5,7 +5,12 @@ import { router } from "@/router/index";
 
 import useSelectedGame from "@/use/useSelectedGame";
 
-const { selectedGame, setSelectedGame } = useSelectedGame();
+const { selectedGame } = useSelectedGame();
+
+import { useToken } from "@/use/useToken";
+const { getToken } = useToken();
+
+const token = getToken();
 
 const gameState = reactive({
   connected: 0,
@@ -13,7 +18,7 @@ const gameState = reactive({
 });
 
 function startGame(url) {
-  if (url) window.location = url;
+  if (url) window.location = `${url}/?${token}`; // check here токен без ?, чисто все, что после него. Берется при запуске приложения
 
   gameState.connected = gameState.all;
   socket.close();
