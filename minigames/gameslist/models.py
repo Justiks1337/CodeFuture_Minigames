@@ -1,6 +1,5 @@
 from django.db import models
 
-from telegram.config.Config import Config
 # Create your models here.
 
 

@@ -5,8 +5,8 @@ import aiohttp
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from asgiref.sync import sync_to_async
 
-from minigames.gameslist.models import GamesList
-from minigames.games_queue.models import Users
+from gameslist.models import GamesList
+from users.models import Users
 
 
 class PlayerWebsocket(AsyncJsonWebsocketConsumer):

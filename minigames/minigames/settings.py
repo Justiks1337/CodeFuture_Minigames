@@ -42,11 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'minigames.gameslist',
-    'minigames.games_queue',
+    'gameslist',
+    'games_queue',
     'rest_framework',
     'corsheaders',
-    'channels'
+    'channels',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'minigames.minigames.urls'
+ROOT_URLCONF = 'minigames.urls'
 
 CHANNEL_LAYERS = {
     "default": {
@@ -71,9 +72,9 @@ CHANNEL_LAYERS = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['minigames/templates',
-                 'minigames/games_queue/templates',
-                 'minigames/gameslist/templates'],
+        'DIRS': ['templates',
+                 'games_queue/templates',
+                 'gameslist/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

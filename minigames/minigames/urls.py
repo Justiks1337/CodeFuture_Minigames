@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from minigames.gameslist.views import GamesListView, index
+from gameslist.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/gameslist/', GamesListView.as_view()),
-    path('queue/', include('minigames.games_queue.urls')),
-    path('gameslist/', index)
+    path('queue/', include('games_queue.urls')),
+    path('gameslist/', index),
+    path('users/', include('users.urls'))
 ]
