@@ -25,15 +25,6 @@ async def download_user_avatar(user_id: int):
     :arg user_id - user id
     """
 
-    async with aiohttp.ClientSession() as session:
-        async with session.get(f"{Config.http}://{Config.host_name}/api/v1/in_database",
-                               params={"user_id": user_id},
-                               headers={"Content-type": "application/json",
-                                        "Authorization": Config.server_authkey}) as response:
-            json = await response.json()
-            if json.get("in_database"):
-                return
-
     user_profile_photo = await bot.get_user_profile_photos(user_id)
 
     if len(user_profile_photo.photos) > 0:
@@ -44,9 +35,12 @@ async def download_user_avatar(user_id: int):
         with open(file_destination, "rb") as destination:
             async with aiohttp.ClientSession() as session:
                 async with session.post(
-                        f"{Config.http}://{Config.host_name}/api/v1/add_avatar?file_name={file_destination}",
+                        f"{Config.http}://{Config.host_name}/users/add_avatar",
                         data={"file": destination},
-                        headers={"Authorization": Config.server_authkey}):
+                        params={"file_name": file_destination,
+                                "user_id": user_id},
+                        headers={"Authorization": Config.server_authkey}
+                ) as response:
                     os.remove(file_destination)
 
 

@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/asgi/
 
 import os
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'minigames.minigames.settings')
+from django.core.management import call_command
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'minigames.settings')
 
 from django import setup
 setup()
@@ -17,7 +19,10 @@ setup()
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 
-from minigames.games_queue.routing import websocket_urlpatterns
+from games_queue.routing import websocket_urlpatterns
+
+call_command('makemigrations')
+call_command('migrate')
 
 asgi_application = get_asgi_application()
 

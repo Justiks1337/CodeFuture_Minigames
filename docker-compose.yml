@@ -32,7 +32,7 @@ services:
             dockerfile: ./dockerfiles/web/Dockerfile
         container_name: 'daphne'
         tty: true
-        command: python3 -u -m daphne web_django.asgi:application -b daphne -p 8000
+        command: python3 -u -m daphne minigames.asgi:application -b daphne -p 8000
         depends_on:
             - database
         restart: always
