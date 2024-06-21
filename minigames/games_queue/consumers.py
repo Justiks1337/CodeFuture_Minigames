@@ -1,4 +1,5 @@
 from urllib.parse import parse_qs
+import os
 
 import aiohttp
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
@@ -6,7 +7,6 @@ from asgiref.sync import sync_to_async
 
 from minigames.gameslist.models import GamesList
 from minigames.games_queue.models import Users
-from config.Config import Config
 
 
 class PlayerWebsocket(AsyncJsonWebsocketConsumer):
@@ -84,8 +84,7 @@ class PlayerWebsocket(AsyncJsonWebsocketConsumer):
                     f'https://{game._domain}/api/v1/start_game',
                     headers={
                         'players': [i.user_id for i in PlayerWebsocket.consumers[self.group]],
-                        'Authorization': Config.server_authkey}) as response:
-                print((await response.json())['url'])
+                        'Authorization': os.getenv("SECRET_KEY")}) as response:
                 return (await response.json())['url']
 
     async def new_user_count(self):

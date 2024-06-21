@@ -1,6 +1,6 @@
 import asyncpg
 
-from config.Config import Config
+from telegram.config.Config import Config
 
 
 class Connection:

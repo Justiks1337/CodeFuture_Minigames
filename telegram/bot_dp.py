@@ -1,6 +1,6 @@
 import aiogram
 
-from config.Config import Config
+from telegram.config.Config import Config
 
 
 bot = aiogram.Bot(Config.token)

@@ -1,6 +1,6 @@
 from django.db import models
 
-from config.Config import Config
+from telegram.config.Config import Config
 # Create your models here.
 
 
@@ -17,7 +17,7 @@ class GamesList(models.Model):
         """If domain in database -> redirect to queue, else redirect to url in database"""
 
         if self._domain:
-            return f"{Config.http}://{Config.host_name}/queue/{self.alias}"
+            return f"/queue/{self.alias}"
         return self._url
 
 

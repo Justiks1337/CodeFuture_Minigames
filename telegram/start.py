@@ -5,7 +5,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from bot_dp import bot, dp
 from database import Connection
-from config.Config import Config
+from telegram.config.Config import Config
 
 
 @dp.message(CommandStart())
