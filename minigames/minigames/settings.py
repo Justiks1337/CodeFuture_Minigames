@@ -9,25 +9,29 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
-from config.Config import Config
+import dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+dotenv.load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d#4a#3ivvqb^nbjdub=k_+g9yea*$6903bw+cz$^djr=i!w-7*'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1",
+                 "nginx",
+                 "daphne"]
 
 
 # Application definition
@@ -39,11 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'minigames.gameslist',
-    'minigames.games_queue',
     'rest_framework',
     'corsheaders',
-    'channels'
+    'channels',
+    'users',
+    'gameslist'
 ]
 
 MIDDLEWARE = [
@@ -57,7 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'minigames.minigames.urls'
+ROOT_URLCONF = 'minigames.urls'
 
 CHANNEL_LAYERS = {
     "default": {
@@ -68,9 +72,9 @@ CHANNEL_LAYERS = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['minigames/templates',
-                 'minigames/games_queue/templates',
-                 'minigames/gameslist/templates'],
+        'DIRS': ['templates',
+                 'games_queue/templates',
+                 'gameslist/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -92,11 +96,7 @@ WSGI_APPLICATION = 'minigames.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': Config.name,
-        'USER': Config.user,
-        'PASSWORD': Config.password,
-        'HOST': Config.host,
-        'PORT': Config.port
+        **dotenv.dotenv_values(".env.database"),
     }
 }
 
@@ -137,9 +137,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http.request import HttpRequest
 from asgiref.sync import sync_to_async
 
-from minigames.gameslist.models import GamesList
+from gameslist.models import GamesList
 
 
 async def index(request: HttpRequest, **kwargs):

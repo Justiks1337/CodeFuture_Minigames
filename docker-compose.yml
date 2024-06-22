@@ -1,0 +1,80 @@
+# docker-compose.yml
+version: '3'
+
+services:
+
+    nginx:
+        build:
+            context: .
+            dockerfile: ./dockerfiles/nginx/Dockerfile
+        depends_on:
+            - daphne
+            - vue
+        ports:
+            - 80:80
+        volumes:
+            - avatars:/media/avatars/
+            - static:/dist/
+
+    database:
+        build:
+            context: .
+            dockerfile: ./dockerfiles/postgres/Dockerfile
+        container_name: 'database'
+        environment:
+            POSTGRES_DB: "main"
+            POSTGRES_USER: "minigames"
+            POSTGRES_PASSWORD: "12345678"
+        expose:
+            - 5432
+
+    daphne:
+        build:
+            context: .
+            dockerfile: ./dockerfiles/web/Dockerfile
+        container_name: 'daphne'
+        tty: true
+        command: python3 -u -m daphne minigames.asgi:application -b daphne -p 8000
+        depends_on:
+            - database
+        restart: always
+        expose:
+           - 8000
+        volumes:
+            - avatars:/media/avatars/
+
+
+    telegram:
+        build:
+            context: .
+            dockerfile: ./dockerfiles/telegram/Dockerfile
+        container_name: 'telegram'
+        command: python3 -u telegram/main.py
+        depends_on:
+            - database
+        tty: true
+        environment:
+            - PYTHONPATH=.
+
+    vue:
+        build:
+            context: .
+            dockerfile: ./dockerfiles/vue/Dockerfile
+        container_name: 'vue'
+        command: npm run build
+        tty: true
+        volumes:
+            -   static:/dist/
+        expose:
+            - 81
+
+
+networks:
+    database_network:
+        driver: bridge
+
+volumes:
+     avatars:
+        external: true
+     static:
+         external: true

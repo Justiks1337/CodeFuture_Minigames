@@ -3,7 +3,7 @@ from django.http import HttpRequest
 from rest_framework.generics import ListAPIView
 from rest_framework.serializers import ModelSerializer
 
-from minigames.gameslist.models import GamesList
+from gameslist.models import GamesList
 
 
 class GamesListView(ListAPIView):
