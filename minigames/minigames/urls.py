@@ -20,9 +20,9 @@ from django.urls import path, include
 from gameslist.views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('api/admin/', admin.site.urls),
     path('api/v1/gameslist/', GamesListView.as_view()),
-    path('queue/', include('games_queue.urls')),
-    path('gameslist/', index),
-    path('users/', include('users.urls'))
+    path('api/queue/', include('games_queue.urls')),
+    path('api/gameslist/', index),
+    path('api/users/', include('users.urls'))
 ]

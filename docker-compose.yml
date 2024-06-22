@@ -9,10 +9,12 @@ services:
             dockerfile: ./dockerfiles/nginx/Dockerfile
         depends_on:
             - daphne
+            - vue
         ports:
             - 80:80
         volumes:
-            - avatars:/static/avatars/
+            - avatars:/media/avatars/
+            - static:/dist/
 
     database:
         build:
@@ -39,7 +41,7 @@ services:
         expose:
            - 8000
         volumes:
-            - avatars:/static/avatars/
+            - avatars:/media/avatars/
 
 
     telegram:
@@ -54,6 +56,19 @@ services:
         environment:
             - PYTHONPATH=.
 
+    vue:
+        build:
+            context: .
+            dockerfile: ./dockerfiles/vue/Dockerfile
+        container_name: 'vue'
+        command: npm run build
+        tty: true
+        volumes:
+            -   static:/dist/
+        expose:
+            - 81
+
+
 networks:
     database_network:
         driver: bridge
@@ -61,3 +76,5 @@ networks:
 volumes:
      avatars:
         external: true
+     static:
+         external: true

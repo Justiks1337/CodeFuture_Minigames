@@ -18,5 +18,4 @@ class GamesList(models.Model):
         if self._domain:
             return f"/queue/{self.alias}"
         return self._url
-
-
+    

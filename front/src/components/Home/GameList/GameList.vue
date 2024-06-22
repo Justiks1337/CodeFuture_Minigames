@@ -6,7 +6,7 @@ import { ref } from "vue";
 const gamelist = ref([]);
 
 async function getGameList() {
-  const response = await fetch("http://127.0.0.1:8080/api/v1/gameslist/", {
+  const response = await fetch("http://127.0.0.1/api/v1/gameslist/", {
     headers: {
       "Content-type": "applicarion/json",
     },

@@ -43,12 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gameslist',
-    'games_queue',
     'rest_framework',
     'corsheaders',
     'channels',
-    'users'
+    'users',
+    'gameslist'
 ]
 
 MIDDLEWARE = [
@@ -138,9 +137,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
